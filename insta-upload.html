@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nihar's Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #121212;
+      color: #f1f1f1;
+    }
+    body.dark-mode .project-card,
+    body.dark-mode .contact-form {
+      background: #1e1e1e;
+      color: #f1f1f1;
+      border: 1px solid #2c2c2c;
+    }
+    body.dark-mode footer {
+      background: #1f1f1f;
+      border-top: 1px solid #2c2c2c;
+      color: #aaa;
+    }
+
+    /* Light Mode */
+    body.light-mode {
+      background: #f9f9f9;
+      color: #222;
+    }
+    body.light-mode .project-card,
+    body.light-mode .contact-form {
+      background: #ffffff;
+      color: #222;
+      border: 1px solid #ddd;
+    }
+    body.light-mode footer {
+      background: #f1f1f1;
+      border-top: 1px solid #ddd;
+      color: #555;
+    }
+
+    /* Shared Styles */
+    .project-card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 6px 20px rgba(0, 173, 181, 0.3);
+    }
+    .btn-custom {
+      background: linear-gradient(135deg, #00adb5, #007f85);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+    }
+    .btn-custom:hover {
+      background: linear-gradient(135deg, #00969e, #006a70);
+    }
+    footer {
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    /* Profile Section */
+    .profile-card {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    .profile-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00adb5;
+      margin-bottom: 15px;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 1.2rem;
+      margin-left: 15px;
+    }
+
+    /* Certifications */
+    .cert-card {
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cert-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 173, 181, 0.4);
+    }
+    .modal-content {
+      background: transparent;
+      border: none;
+    }
+  </style>
+</head>
+<body class="dark-mode">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Nihar Soni</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#profile">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+          <li class="nav-item"><a class="nav-link" href="#socials">Socials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item">
+            <button class="toggle-btn ms-lg-3" id="toggleMode">☀️</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Profile -->
+  <section id="profile" class="py-5 mt-5">
+    <div class="container profile-card animate__animated animate__fadeIn">
+      <img src="25MSIT174.png" alt="Profile Picture">
+      <h1 class="fw-bold">Hi, I'm Nihar 👋</h1>
+      <p class="lead">Full Stack Developer | Tech Enthusiast | Lifelong Learner</p>
+      <p>I love building scalable apps and exploring AI, cloud, and next-gen web technologies. 🚀</p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">🚀 My Projects</h2>
+      <div class="row g-4">
+        <div class="col-md-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Profind</h5>
+              <p class="card-text">A platform to connect service providers and customers with chatbot support.</p>
+              <a href="https://github.com/yourusername/profind" target="_blank" class="btn btn-custom">View Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">CineChill</h5>
+              <p class="card-text">Watch movies with friends online with chat & video call features.</p>
+              <a href="https://github.com/yourusername/cinechill" target="_blank" class="btn btn-custom">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">🏆 Certifications</h2>
+      <div class="row g-4 justify-content-center">
+        <!-- Certification Cards -->
+        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal1">
+            <img src="C_Certify.jpeg" class="card-img-top" alt="Certification 1">
+            <div class="card-body text-center">
+              <h5 class="card-title">C Language</h5>
+              <p class="card-text">Issued by Tansen Computer Campus</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal2">
+            <img src="Java_Certify.jpeg" class="card-img-top" alt="Certification 2">
+            <div class="card-body text-center">
+              <h5 class="card-title">Java Language</h5>
+              <p class="card-text">Issued by Tansen Computer Campus</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal3">
+            <img src="Illuminati Gamjam.jpeg" class="card-img-top" alt="Certification 3">
+            <div class="card-body text-center">
+              <h5 class="card-title">Game Jam Participation</h5>
+              <p class="card-text">Issued by ITM(SLS) Baroda University</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
+          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal4">
+            <img src="Hackathon.jpg" class="card-img-top" alt="Certification 4">
+            <div class="card-body text-center">
+              <h5 class="card-title">Hackathon</h5>
+              <p class="card-text">Issued by Charusat University</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certification Modals -->
+  <div class="modal fade" id="certModal1" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+          <img src="C_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 1 Full">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal2" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+          <img src="Java_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 2 Full">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal3" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+          <img src="Illuminati Gamjam.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 3 Full">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal4" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
+          <img src="Hackathon.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 4 Full">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Socials -->
+  <section id="socials" class="py-5 text-center">
+    <div class="container animate__animated animate__fadeInUp">
+      <h2 class="mb-4">🌐 Find Me On</h2>
+      <a href="https://www.instagram.com/_nihar_not_found_?igsh=Nzd3a3dmMnpxeG4z" target="_blank" class="btn btn-outline-danger mx-2">Instagram</a>
+      <a href="https://www.linkedin.com/in/nihar-soni-278637270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="btn btn-outline-primary mx-2">LinkedIn</a>
+      <a href="https://www.snapchat.com/add/nihar182020?share_id=PN3vEjuQ2IQ&locale=en-US" target="_blank" class="btn btn-outline-warning mx-2">Snapchat</a>
+      <a href="https://wa.me/qr/SJKA5CGXQKAQC1" target="_blank" class="btn btn-outline-secondary mx-2">Whatsapp</a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">📩 Contact Me</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6 animate__animated animate__fadeIn">
+          <form action="https://formspree.io/f/xjkeleoy" method="POST" class="contact-form shadow">
+            <div class="mb-3">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+            </div>
+            <div class="mb-3">
+              <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+            </div>
+            <div class="mb-3">
+              <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Nihar Soni </p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Dark Mode Toggle -->
+  <script>
+    const toggleBtn = document.getElementById("toggleMode");
+    const body = document.body;
+    const navbar = document.querySelector(".navbar");
+
+    // Default: Dark Mode
+    body.classList.add("dark-mode");
+    toggleBtn.textContent = "☀️";
+    navbar.classList.add("navbar-dark", "bg-dark");
+
+    toggleBtn.addEventListener("click", () => {
+      if (body.classList.contains("dark-mode")) {
+        body.classList.remove("dark-mode");
+        body.classList.add("light-mode");
+        toggleBtn.textContent = "🌙";
+        navbar.classList.remove("navbar-dark", "bg-dark");
+        navbar.classList.add("navbar-light", "bg-light");
+      } else {
+        body.classList.remove("light-mode");
+        body.classList.add("dark-mode");
+        toggleBtn.textContent = "☀️";
+        navbar.classList.remove("navbar-light", "bg-light");
+        navbar.classList.add("navbar-dark", "bg-dark");
+      }
+    });
+
+    // Auto-close navbar on link click (mobile only)
+    document.querySelectorAll(".nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        const navbarCollapse = document.querySelector("#navbarNav");
+        if (navbarCollapse.classList.contains("show")) {
+          new bootstrap.Collapse(navbarCollapse).toggle();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
