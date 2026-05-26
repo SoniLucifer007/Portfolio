@@ -3,227 +3,894 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nihar's Portfolio</title>
-  <!-- Bootstrap CSS -->
+  <meta name="description" content="Portfolio of Nihar Soni, a full-stack developer focused on practical web apps, AI-assisted workflows, databases, and cloud fundamentals.">
+  <title>Portfolio | Nihar Soni</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Animate.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-      transition: all 0.3s ease-in-out;
+    :root {
+      --bg: #0d1117;
+      --surface: #151b23;
+      --surface-2: #1d2632;
+      --text: #f5f7fb;
+      --muted: #a9b4c3;
+      --line: rgba(255, 255, 255, 0.12);
+      --accent: #00b8a9;
+      --accent-2: #4f8cff;
+      --accent-3: #f4c95d;
+      --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
+      --nav-bg: rgba(13, 17, 23, 0.86);
+      --input-bg: #0f1520;
+      --chip-bg: rgba(0, 184, 169, 0.12);
     }
 
-    /* Dark Mode */
-    body.dark-mode {
-      background: #121212;
-      color: #f1f1f1;
-    }
-    body.dark-mode .project-card,
-    body.dark-mode .contact-form {
-      background: #1e1e1e;
-      color: #f1f1f1;
-      border: 1px solid #2c2c2c;
-    }
-    body.dark-mode footer {
-      background: #1f1f1f;
-      border-top: 1px solid #2c2c2c;
-      color: #aaa;
-    }
-
-    /* Light Mode */
     body.light-mode {
-      background: #f9f9f9;
-      color: #222;
-    }
-    body.light-mode .project-card,
-    body.light-mode .contact-form {
-      background: #ffffff;
-      color: #222;
-      border: 1px solid #ddd;
-    }
-    body.light-mode footer {
-      background: #f1f1f1;
-      border-top: 1px solid #ddd;
-      color: #555;
+      --bg: #f5f9ff;
+      --surface: #fbfdff;
+      --surface-2: #eaf6f4;
+      --text: #15202b;
+      --muted: #5f6c7b;
+      --line: rgba(21, 32, 43, 0.12);
+      --shadow: 0 20px 48px rgba(34, 53, 77, 0.13);
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --input-bg: #ffffff;
+      --chip-bg: rgba(0, 184, 169, 0.1);
     }
 
-    /* Shared Styles */
-    .project-card {
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    * {
+      box-sizing: border-box;
     }
-    .project-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 6px 20px rgba(0, 173, 181, 0.3);
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
     }
-    .btn-custom {
-      background: linear-gradient(135deg, #00adb5, #007f85);
-      color: #fff;
-      border: none;
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 184, 169, 0.2), transparent 34rem),
+        radial-gradient(circle at 85% 12%, rgba(79, 140, 255, 0.16), transparent 28rem),
+        var(--bg);
+      color: var(--text);
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    body.light-mode {
+      background:
+        linear-gradient(135deg, rgba(0, 184, 169, 0.12), transparent 34%),
+        linear-gradient(225deg, rgba(244, 201, 93, 0.16), transparent 36%),
+        radial-gradient(circle at top left, rgba(79, 140, 255, 0.14), transparent 32rem),
+        radial-gradient(circle at 85% 12%, rgba(0, 184, 169, 0.1), transparent 28rem),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .navbar {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .navbar-brand {
+      color: var(--text);
+      letter-spacing: 0;
+    }
+
+    .navbar-brand span {
+      color: var(--accent);
+    }
+
+    .navbar .nav-link {
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 0.35rem;
+    }
+
+    .navbar .nav-link:hover,
+    .navbar .nav-link:focus {
+      color: var(--text);
+    }
+
+    .navbar-toggler {
+      border-color: var(--line);
+    }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.05rem;
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 184, 169, 0.55);
+    }
+
+    section {
+      position: relative;
+      padding: 84px 0;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0.35rem 0 0.85rem;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      max-width: 720px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 112px;
+    }
+
+    .hero-card {
+      padding: 2rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      box-shadow: var(--shadow);
+    }
+
+    body.light-mode .hero-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(234, 246, 244, 0.78));
+    }
+
+    .profile-photo-wrap {
+      position: relative;
+      width: min(440px, 84vw);
+      margin: 0 auto;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--surface-2);
+    }
+
+    .profile-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+      transform: scale(1.02);
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--chip-bg);
+      color: var(--text);
+      font-size: 0.9rem;
       font-weight: 600;
     }
-    .btn-custom:hover {
-      background: linear-gradient(135deg, #00969e, #006a70);
-    }
-    footer {
-      padding: 20px 0;
-      text-align: center;
-    }
 
-    /* Profile Section */
-    .profile-card {
-      max-width: 800px;
-      margin: auto;
-      text-align: center;
-    }
-    .profile-card img {
-      width: 150px;
-      height: 150px;
+    .availability-dot {
+      width: 0.62rem;
+      height: 0.62rem;
       border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #00adb5;
-      margin-bottom: 15px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(0, 184, 169, 0.15);
     }
 
-    /* Toggle Button */
-    .toggle-btn {
-      cursor: pointer;
-      border: none;
-      background: none;
-      font-size: 1.2rem;
-      margin-left: 15px;
+    .hero h1 {
+      max-width: 780px;
+      margin: 1.1rem 0;
+      font-size: clamp(2.6rem, 7vw, 5.6rem);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: 0;
     }
 
-    /* Certifications */
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero .lead {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.8;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.7rem;
+    }
+
+    .btn-custom,
+    .btn-quiet {
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      border-radius: 6px;
+      padding: 0.72rem 1.05rem;
+      font-weight: 700;
+    }
+
+    .btn-custom {
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      box-shadow: 0 14px 32px rgba(0, 184, 169, 0.22);
+    }
+
+    .btn-custom:hover,
+    .btn-custom:focus {
+      color: #ffffff;
+      filter: brightness(1.04);
+      transform: translateY(-1px);
+    }
+
+    .btn-quiet {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn-quiet:hover,
+    .btn-quiet:focus {
+      border-color: rgba(0, 184, 169, 0.55);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1.4rem;
+    }
+
+    .skill-pill {
+      padding: 0.58rem 0.78rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .project-card,
+    .cert-card,
+    .contact-form,
+    .social-panel {
+      height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.12);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .project-card:hover,
+    .cert-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 184, 169, 0.5);
+      box-shadow: var(--shadow);
+    }
+
+    .project-card .card-body {
+      padding: 1.35rem;
+    }
+
+    .project-number {
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .project-card .card-title {
+      margin-top: 0.6rem;
+      font-weight: 800;
+      font-size: 1.45rem;
+    }
+
+    .project-card .card-text {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 1rem 0 1.2rem;
+    }
+
+    .project-tags span {
+      padding: 0.35rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
     .cert-card {
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
     }
-    .cert-card:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 8px 25px rgba(0, 173, 181, 0.4);
+
+    .cert-card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-2);
     }
+
+    .cert-card .card-body {
+      padding: 1rem;
+    }
+
+    .cert-card .card-title {
+      margin-bottom: 0.35rem;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .cert-card .card-text {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
     .modal-content {
-      background: transparent;
       border: none;
+      background: transparent;
+    }
+
+    .modal-body img {
+      max-height: 88vh;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .social-panel {
+      padding: 1.25rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 58px;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-2);
+      color: var(--text);
+      font-weight: 700;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 184, 169, 0.55);
+      color: var(--text);
+    }
+
+    .contact-form {
+      padding: 1.35rem;
+    }
+
+    .form-control {
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--input-bg);
+      color: var(--text);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent);
+      background: var(--input-bg);
+      color: var(--text);
+      box-shadow: 0 0 0 0.2rem rgba(0, 184, 169, 0.16);
+    }
+
+    .form-control::placeholder {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        padding: 1rem 0;
+      }
+
+      .navbar .nav-link {
+        margin-left: 0;
+        padding: 0.6rem 0;
+      }
+
+      .theme-toggle {
+        margin-top: 0.6rem;
+      }
+    }
+
+    @media (max-width: 767px) {
+      section {
+        padding: 64px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 104px;
+      }
+
+      .hero-card {
+        padding: 1.25rem;
+      }
+
+      .hero-actions .btn-custom,
+      .hero-actions .btn-quiet {
+        width: 100%;
+      }
+
+      .stat-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-card img {
+        height: 230px;
+      }
     }
   </style>
 </head>
 <body class="dark-mode">
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Nihar Soni</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <a class="navbar-brand fw-bold" href="#profile">Portfolio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="#profile">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#profile">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
           <li class="nav-item"><a class="nav-link" href="#socials">Socials</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           <li class="nav-item">
-            <button class="toggle-btn ms-lg-3" id="toggleMode">☀️</button>
+            <button class="theme-toggle ms-lg-3" id="toggleMode" type="button" aria-label="Switch to light mode">☀</button>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Profile -->
-  <section id="profile" class="py-5 mt-5">
-    <div class="container profile-card animate__animated animate__fadeIn">
-      <img src="25MSIT174.png" alt="Profile Picture">
-      <h1 class="fw-bold">Hi, I'm Nihar 👋</h1>
-      <p class="lead">Full Stack Developer | Tech Enthusiast | Lifelong Learner</p>
-      <p>I love building scalable apps and exploring AI, cloud, and next-gen web technologies. 🚀</p>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">🚀 My Projects</h2>
-      <div class="row g-4">
-        <div class="col-md-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">TO-DO List</h5>
-              <p class="card-text">A platform where you can write to do things.</p>
-              <a href="https://sonilucifer007.github.io/To-Do-List/" target="_blank" class="btn btn-custom">View Project</a>
+  <main>
+    <section id="profile" class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7 animate__animated animate__fadeInUp">
+            <div class="availability"><span class="availability-dot"></span>Full-stack developer in training</div>
+            <h1>Nihar Soni</h1>
+            <p class="lead">
+              Full-stack developer and prompt engineer building clean, useful web experiences.
+            </p>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-custom">View Projects</a>
+              <a href="#contact" class="btn btn-quiet">Contact Me</a>
+            </div>
+            <div class="stat-strip">
+              <div class="stat-card">
+                <strong>8+</strong>
+                <span>certifications</span>
+              </div>
+              <div class="stat-card">
+                <strong>4</strong>
+                <span>featured projects</span>
+              </div>
+              <div class="stat-card">
+                <strong>4</strong>
+                <span>core skill areas</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Expense Tracker</h5>
-              <p class="card-text">A web site to track your expenses</p>
-              <a href="https://sonilucifer007.github.io/Expense-Tracker" target="_blank" class="btn btn-custom">View Project</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Certifications -->
-  <section id="certifications" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">🏆 Certifications</h2>
-      <div class="row g-4 justify-content-center">
-        <!-- Certification Cards -->
-        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal1">
-            <img src="C_Certify.jpeg" class="card-img-top" alt="Certification 1">
-            <div class="card-body text-center">
-              <h5 class="card-title">C Language</h5>
-              <p class="card-text">Issued by Tansen Computer Campus</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal2">
-            <img src="Java_Certify.jpeg" class="card-img-top" alt="Certification 2">
-            <div class="card-body text-center">
-              <h5 class="card-title">Java Language</h5>
-              <p class="card-text">Issued by Tansen Computer Campus</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal3">
-            <img src="Illuminati Gamjam.jpeg" class="card-img-top" alt="Certification 3">
-            <div class="card-body text-center">
-              <h5 class="card-title">Game Jam Participation</h5>
-              <p class="card-text">Issued by ITM(SLS) Baroda University</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 animate__animated animate__zoomIn">
-          <div class="card project-card h-100 shadow-sm cert-card" data-bs-toggle="modal" data-bs-target="#certModal4">
-            <img src="Hackathon.jpg" class="card-img-top" alt="Certification 4">
-            <div class="card-body text-center">
-              <h5 class="card-title">Hackathon</h5>
-              <p class="card-text">Issued by Charusat University</p>
+          <div class="col-lg-5 animate__animated animate__fadeIn">
+            <div class="hero-card">
+              <div class="profile-photo-wrap">
+                <img src="25MSIT174.png" alt="Nihar Soni portrait">
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Certification Modals -->
+    <section id="about">
+      <div class="container">
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-5">
+            <span class="section-kicker">About</span>
+            <h2 class="section-title">A developer profile with curiosity and momentum.</h2>
+          </div>
+          <div class="col-lg-7">
+            <p class="section-copy">
+              I focus on creating web applications that are clear, responsive, and easy to use. My current learning path combines front-end polish, back-end logic, database design, version control, cloud concepts, and prompt engineering so I can build complete products end to end.
+            </p>
+            <div class="skill-list">
+              <span class="skill-pill">Full Stack Development</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">C Programming</span>
+              <span class="skill-pill">Databases</span>
+              <span class="skill-pill">Cloud Computing</span>
+              <span class="skill-pill">GitHub</span>
+              <span class="skill-pill">Prompt Engineer</span>
+              <span class="skill-pill">Hackathons</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 mb-4">
+          <div>
+            <span class="section-kicker">Selected Work</span>
+            <h2 class="section-title">Projects</h2>
+          </div>
+          <p class="section-copy mb-0">
+            A few product ideas that show my interest in practical platforms, real-time interaction, and user-focused workflows.
+          </p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 animate__animated animate__zoomIn">
+            <article class="card project-card">
+              <div class="card-body">
+                <div class="project-number">Project 01</div>
+                <h3 class="card-title">Promptify Labs</h3>
+                <p class="card-text">
+                  A Prompt Showcase Website for trending AI Prompts with their outputs, allowing users to explore, test, and share effective prompts for various AI tools in one place.
+                </p>
+                <div class="project-tags">
+                  <span>Showcase</span>
+                  <span>AI Prompts</span>
+                  <span>Cross Plateform</span>
+                </div>
+                <a href="https://promptifylabs.netlify.app" target="_blank" rel="noopener noreferrer">
+                  <span class="btn btn-quiet" aria-disabled="false"> Visit Now </span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 animate__animated animate__zoomIn">
+            <article class="card project-card">
+              <div class="card-body">
+                <div class="project-number">Project 02</div>
+                <h3 class="card-title"> Monastery360 </h3>
+                <p class="card-text">
+                  A Sikkim government tourism website that provides comprehensive information about Sikkim's tourist attractions with 360 Deg. views, travel guides, and booking options to enhance the travel experience for visitors.
+                </p>
+                <div class="project-tags">
+                  <span>Tourist Website6</span>
+                  <span>360° Views</span>
+                  <span>Travel Guides</span>
+                </div>
+                <a href="https://sonilucifer007.github.io/Monastery360/" target="_blank" rel="noopener noreferrer">
+                  <span class="btn btn-quiet" aria-disabled="true">View Now</span>
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-md-6 animate__animated animate__zoomIn">
+            <article class="card project-card">
+              <div class="card-body">
+                <div class="project-number">Project 03</div>
+                <h3 class="card-title">Expense Tracker</h3>
+                <p class="card-text">
+                  A expense calculator web application for users to track their daily expenses.
+                </p>
+                <div class="project-tags">
+                  <span>Calculator</span>
+                  <span>Financial</span>
+                  <span>Tracking</span>
+                </div>
+                <a href="https://sonilucifer007.github.io/Expense-Tracker/" target="_blank" rel="noopener noreferrer">
+                <span class="btn btn-quiet" aria-disabled="true"> Visit Now </span>
+              </a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 animate__animated animate__zoomIn">
+            <article class="card project-card">
+              <div class="card-body">
+                <div class="project-number">Project 04</div>
+                <h3 class="card-title">ToDo List</h3>
+                <p class="card-text">
+                  A simple and intuitive To-Do List web application that allows users to organize their tasks efficiently, with features for adding, editing, and deleting tasks.
+                </p>
+                <div class="project-tags">
+                  <span>To-Do List</span>
+                  <span>Task Management</span>
+                  <span>Productivity</span>
+                </div>
+                <a href="https://sonilucifer007.github.io/To-Do-List/" target="_blank" rel="noopener noreferrer">
+                <span class="btn btn-quiet" aria-disabled="true"> View Now </span>
+                </a>
+              </div>
+            </article>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications">
+      <div class="container">
+        <div class="text-center mb-5">
+          <!--<span class="section-kicker">Proof Of Learning</span>-->
+          <h2 class="section-title">Certifications</h2>
+          <p class="section-copy mx-auto">
+            Coursework and participation records across programming, cloud, databases, GitHub, prompt engineering, game jams, and hackathons.
+          </p>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal1" role="button" tabindex="0">
+              <img src="C_Certify.jpeg" class="card-img-top" alt="C Language certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">C Language</h3>
+                <p class="card-text">Tansen Computer Campus</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal2" role="button" tabindex="0">
+              <img src="Java_Certify.jpeg" class="card-img-top" alt="Java Language certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Java Language</h3>
+                <p class="card-text">Tansen Computer Campus</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal3" role="button" tabindex="0">
+              <img src="Illuminati Gamjam.jpeg" class="card-img-top" alt="Game Jam participation certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Game Jam</h3>
+                <p class="card-text">ITM (SLS) Baroda University</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal4" role="button" tabindex="0">
+              <img src="Hackathon.jpg" class="card-img-top" alt="Hackathon certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Hackathon</h3>
+                <p class="card-text">Charusat University</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal5" role="button" tabindex="0">
+              <img src="New folder/CC_Coursera_page-0001.jpg" class="card-img-top" alt="Cloud Computing certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Cloud Computing</h3>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal6" role="button" tabindex="0">
+              <img src="New folder/Database_Coursera_page-0001.jpg" class="card-img-top" alt="Database certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Meta Database</h3>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal7" role="button" tabindex="0">
+              <img src="New folder/GitHub_Coursera_page-0001.jpg" class="card-img-top" alt="GitHub certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">GitHub</h3>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal8" role="button" tabindex="0">
+              <img src="New folder/Prompt_Eng_Coursera_page-0001.jpg" class="card-img-top" alt="Prompt Engineering certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Prompt Engineering</h3>
+                <p class="card-text">Coursera</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal9" role="button" tabindex="0">
+              <img src="Datnass.jpg" class="card-img-top" alt="DatNass Workshop certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">DatNass Workshop</h3>
+                <p class="card-text">DatNass Tech Pvt. Ltd.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 animate__animated animate__zoomIn">
+            <div class="card cert-card" data-bs-toggle="modal" data-bs-target="#certModal10" role="button" tabindex="0">
+              <img src="Ignito.jpg" class="card-img-top" alt="Ignito Web Warrior certificate preview">
+              <div class="card-body text-center">
+                <h3 class="card-title">Ignito Web Warrior</h3>
+                <p class="card-text">Charusat University</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="socials">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-5">
+            <span class="section-kicker">Connect</span>
+            <h2 class="section-title">Find me online</h2>
+            <p class="section-copy">
+              Reach out for collaborations, project discussions, internship opportunities, or just a good conversation about technology.
+            </p>
+          </div>
+          <div class="col-lg-7">
+            <div class="social-panel">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <a href="https://www.linkedin.com/in/nihar-soni-278637270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn <span>↗</span></a>
+                </div>
+                <div class="col-sm-6">
+                  <a href="https://github.com/SoniLucifer007" target="_blank" rel="noopener noreferrer" class="social-link"> Github <span>↗</span></a>
+                </div>
+                <div class="col-sm-6">
+                  <a href="https://wa.me/qr/SJKA5CGXQKAQC1" target="_blank" rel="noopener noreferrer" class="social-link">WhatsApp <span>↗</span></a>
+                </div>
+                <div class="col-sm-6">
+                  <a href="https://www.instagram.com/_nihar_not_found_?igsh=Nzd3a3dmMnpxeG4z" target="_blank" rel="noopener noreferrer" class="social-link"> Instagram <span>↗</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="text-center mb-4">
+          <span class="section-kicker">Contact</span>
+          <h2 class="section-title">Let's build something useful.</h2>
+          <p class="section-copy mx-auto">
+            Send a message and I will get back to you as soon as I can.
+          </p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-7 col-md-9 animate__animated animate__fadeIn">
+            <form action="https://formspree.io/f/xqejyegg" method="POST" class="contact-form" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="visually-hidden" for="name">Your Name</label>
+                  <input id="name" type="text" name="name" class="form-control" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                  <label class="visually-hidden" for="email">Your Email</label>
+                  <input id="email" type="email" name="email" class="form-control" placeholder="Your Email" required>
+                </div>
+                <div class="col-12">
+                  <label class="visually-hidden" for="message">Your Message</label>
+                  <textarea id="message" name="message" class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-custom w-100">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <div class="modal fade" id="certModal1" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-          <img src="C_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 1 Full">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="C_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="C Language certificate full view">
         </div>
       </div>
     </div>
@@ -233,8 +900,8 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-          <img src="Java_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 2 Full">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="Java_Certify.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Java Language certificate full view">
         </div>
       </div>
     </div>
@@ -244,8 +911,8 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-          <img src="Illuminati Gamjam.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 3 Full">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="Illuminati Gamjam.jpeg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Game Jam participation certificate full view">
         </div>
       </div>
     </div>
@@ -255,93 +922,122 @@
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content">
         <div class="modal-body text-center">
-          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"></button>
-          <img src="Hackathon.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Certification 4 Full">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="Hackathon.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Hackathon certificate full view">
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Socials -->
-  <section id="socials" class="py-5 text-center">
-    <div class="container animate__animated animate__fadeInUp">
-      <h2 class="mb-4">🌐 Find Me On</h2>
-      <a href="https://www.instagram.com/_nihar_not_found_?igsh=Nzd3a3dmMnpxeG4z" target="_blank" class="btn btn-outline-danger mx-2">Instagram</a>
-      <a href="https://www.linkedin.com/in/nihar-soni-278637270?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="btn btn-outline-primary mx-2">LinkedIn</a>
-      <a href="https://www.snapchat.com/add/nihar182020?share_id=PN3vEjuQ2IQ&locale=en-US" target="_blank" class="btn btn-outline-warning mx-2">Snapchat</a>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4 animate__animated animate__fadeInUp">📩 Contact Me</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-6 animate__animated animate__fadeIn">
-          <form action="https://formspree.io/f/xkokgwro" method="POST" class="contact-form shadow">
-            <div class="mb-3">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required>
-            </div>
-            <div class="mb-3">
-              <input type="email" name="email" class="form-control" placeholder="Your Email" required>
-            </div>
-            <div class="mb-3">
-              <textarea name="message" class="form-control" rows="4" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-custom w-100">Send Message</button>
-          </form>
+  <div class="modal fade" id="certModal5" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="New folder/CC_Coursera_page-0001.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Cloud Computing certificate full view">
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
+  <div class="modal fade" id="certModal6" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="New folder/Database_Coursera_page-0001.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Database certificate full view">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal7" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="New folder/GitHub_Coursera_page-0001.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="GitHub certificate full view">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal8" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="New folder/Prompt_Eng_Coursera_page-0001.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="Prompt Engineering certificate full view">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal9" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="Datnass.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="GitHub certificate full view">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="certModal10" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+          <img src="Ignito.jpg" class="img-fluid rounded animate__animated animate__zoomIn" alt="GitHub certificate full view">
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
-    <p>&copy; 2025 Nihar Soni </p>
+    <div class="container">
+      <p>&copy; 2026. Designed and built By Nihar Soni.</p>
+    </div>
   </footer>
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Dark Mode Toggle -->
   <script>
     const toggleBtn = document.getElementById("toggleMode");
     const body = document.body;
-    const navbar = document.querySelector(".navbar");
 
-    // Default: Dark Mode
-    body.classList.add("dark-mode");
-    toggleBtn.textContent = "☀️";
-    navbar.classList.add("navbar-dark", "bg-dark");
+    function setTheme(mode) {
+      const isLight = mode === "light";
+      body.classList.toggle("light-mode", isLight);
+      body.classList.toggle("dark-mode", !isLight);
+      toggleBtn.textContent = isLight ? "☾" : "☀";
+      toggleBtn.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+      localStorage.setItem("portfolio-theme", mode);
+    }
+
+    setTheme(localStorage.getItem("portfolio-theme") || "dark");
 
     toggleBtn.addEventListener("click", () => {
-      if (body.classList.contains("dark-mode")) {
-        body.classList.remove("dark-mode");
-        body.classList.add("light-mode");
-        toggleBtn.textContent = "🌙";
-        navbar.classList.remove("navbar-dark", "bg-dark");
-        navbar.classList.add("navbar-light", "bg-light");
-      } else {
-        body.classList.remove("light-mode");
-        body.classList.add("dark-mode");
-        toggleBtn.textContent = "☀️";
-        navbar.classList.remove("navbar-light", "bg-light");
-        navbar.classList.add("navbar-dark", "bg-dark");
-      }
+      setTheme(body.classList.contains("dark-mode") ? "light" : "dark");
     });
 
-    // Auto-close navbar on link click (mobile only)
-    document.querySelectorAll(".nav-link").forEach(link => {
+    document.querySelectorAll(".nav-link").forEach((link) => {
       link.addEventListener("click", () => {
         const navbarCollapse = document.querySelector("#navbarNav");
         if (navbarCollapse.classList.contains("show")) {
-          new bootstrap.Collapse(navbarCollapse).toggle();
+          bootstrap.Collapse.getOrCreateInstance(navbarCollapse).hide();
+        }
+      });
+    });
+
+    document.querySelectorAll(".cert-card").forEach((card) => {
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          card.click();
         }
       });
     });
   </script>
 </body>
 </html>
-
-
-
